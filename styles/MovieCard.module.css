@@ -1,0 +1,28 @@
+.card {
+    min-width: 400px;
+    max-width: 400px;
+    padding: .15em .5em .5em 0;
+}
+
+.content {
+    max-width: 200;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.cardTitleText {
+    font-size: .90rem;
+    font-weight: 700;
+}
+
+.cardContentText {
+    font-size: .80rem;
+}
+
+.poster {
+    height: 140px;
+    width: 100px;
+    min-width: 100px;
+}
