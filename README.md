@@ -20,6 +20,8 @@ yarn
 npm install
 ```
 
+to install dependencies.
+
 ## Config File
 
 At the root of the project there is a config.json file. In it you should see
@@ -41,7 +43,5 @@ yarn dev
 # or
 npm run dev
 ```
-
-to install dependencies.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the movie search app!
