@@ -6,7 +6,7 @@ import MovieRepo from '../api/repo/movie_repo'
 import SearchInput from '../components/search_input'
 import styles from '../styles/Home.module.css'
 
-function Home ({ popularMoviesJSON }) {
+function Home ({ popularMovies }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -26,9 +26,8 @@ function Home ({ popularMoviesJSON }) {
         <div>
           <SearchInput />
           <div>
-            <h2>Popular Movies</h2>
-
-            <MovieList movies={popularMoviesJSON} layout="carousel"/>
+            {popularMovies.length > 0 && <h2>Popular Movies</h2>}
+            <MovieList movies={popularMovies} layout="carousel"/>
           </div>
         </div>
       </main>
@@ -41,15 +40,15 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const movieRepo = new MovieRepo();
   const movies: Movie[] = await movieRepo.getPopularMovies();
 
-  let popularMoviesJSON: object = {};
+  let popularMovies: object[] = [];
 
   if (movies) {
     // can only pass JSON objects to component so this creates that.
-    popularMoviesJSON = movies.map((movie: Movie) => (movie.toJSON()))
+    popularMovies = movies.map((movie: Movie) => (movie.toJSON()));
   }
 
   // Pass data to the page via props
-  return { props: { popularMoviesJSON }}
+  return { props: { popularMovies }}
 }
 
 export default Home

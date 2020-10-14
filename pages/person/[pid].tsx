@@ -26,14 +26,13 @@ function PersonPage({ errorCode, person }) {
                     <h1>{person.name}</h1>
                     <p className={styles.infoText}>{person.birthday} | {person.birthPlace}</p>
 
-                    <h4>Biography</h4>
+                    {person.biography && <h4>Biography</h4>}
                     <p className={styles.overviewText}>{person.biography}</p>
                 </div>
             </div>
 
             <div className={styles.footer}>
-                <h2>Known For</h2>
-
+                {person.movies.length > 0 && <h2>Known For</h2>}
                 <MovieList movies={person.movies} layout="carousel" />
             </div>
         </div>

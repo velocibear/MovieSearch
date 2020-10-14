@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 function MovieCard({ movie }) {
     let backgroundChipColor: string = 'gray';
+    let chipLabel: string = movie.score;
 
     if (movie.score >= 8) {
         backgroundChipColor = 'lightgreen';
@@ -21,6 +22,11 @@ function MovieCard({ movie }) {
 
     if (movie.score < 5) {
         backgroundChipColor = 'red';
+    }
+
+    if (movie.voteCount == 0) {
+        backgroundChipColor = 'gray';
+        chipLabel = 'No Score'
     }
 
     return (
@@ -35,7 +41,7 @@ function MovieCard({ movie }) {
                             <span className={styles.cardTitleText}>{movie.releaseDate}</span>
                         </Typography>
                         {/* Don't love the inline styles here... */}
-                        <Chip label={movie.score} style={{ backgroundColor: backgroundChipColor, fontWeight: 700, marginTop: '15px' }}/>
+                        <Chip label={chipLabel} style={{ backgroundColor: backgroundChipColor, fontWeight: 700, marginTop: '15px' }}/>
                     </CardContent>
                     <CardMedia 
                         className={styles.poster}

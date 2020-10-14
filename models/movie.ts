@@ -11,6 +11,7 @@ export default class Movie {
     private _backdrop_path: string;
     private _runtime: number;
     private _average_score: number;
+    private _vote_count: number;
     private _budget: number;
     private _revenue: number;
     private _similarMovies: Movie[]
@@ -27,6 +28,7 @@ export default class Movie {
         this._backdrop_path = data.backdrop_path ?? '';
         this._runtime = data.runtime ?? '';
         this._average_score = data.vote_average ?? '';
+        this._vote_count = data.vote_count ?? '';
         this._budget = data.budget ?? '';
         this._revenue = data.revenue ?? '';
         
@@ -39,7 +41,7 @@ export default class Movie {
         this._cast = [];
 
         if (data.credits !== undefined) {
-            // only keep track of top 10 cast members as many below that more often that not do not have an image
+            // only keep track of top 10 cast members as many below that often that not do not have an image
             this._cast = data.credits.cast.map((person: Person) => (new Person(person))).slice(0, 10);
         }
     }
@@ -91,6 +93,10 @@ export default class Movie {
         return this._average_score;
     }
 
+    get voteCount (): number {
+        return this._vote_count;
+    }
+
     get budget (): number {
         return this._budget;
     }
@@ -120,6 +126,7 @@ export default class Movie {
             'runtimeMinutes': this.runtimeMinutes,
             'runtimeReadable': this.runtimeReadable,
             'score': this.score,
+            'voteCount': this.voteCount,
             'budget': this.budget,
             'revenue': this.revenue,
             'similarMovies': this.similarMovies.map((movie: Movie) => (movie.toJSON())),

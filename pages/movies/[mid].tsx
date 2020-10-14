@@ -31,18 +31,16 @@ function MoviePage({ errorCode, movie  }) {
                         <span> {movie.tagline}</span>
                     </Typography>
 
-                    <h4>Overview</h4>
+                    {movie.overview && <h4>Overview</h4>}
                     <p className={styles.overviewText}>{movie.overview}</p>
                 </div>
             </div>
 
             <div className={styles.footer}>
-                <h2>Similar Movies</h2>
-
+                {movie.similarMovies.length > 0 && <h2>Similar Movies</h2>}
                 <MovieList movies={movie.similarMovies} layout="carousel" />
 
-                <h2>Cast</h2>
-
+                {movie.cast.length > 0 && <h2>Cast</h2>}
                 <PersonList people={movie.cast} />
             </div>
         </div>
